@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ubi
+  namespace: argo-test
+  labels:
+    app: ubi
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ubi
+  template:
+    metadata:
+      labels:
+        app: ubi
+    spec:
+      containers:
+      - name: ubi
+        image: registry.access.redhat.com/ubi8/ubi:latest
+        command: ["/bin/sh"]
+        args: ["-c", "while true; do echo hello; sleep 40;done"]
+        resources:
+          limits:
+            cpu: 100m
+            memory: 150Mi
+          requests:
+            cpu: 90m
+            memory: 140Mi

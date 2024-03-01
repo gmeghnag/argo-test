@@ -1,0 +1,24 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: argo-test-application
+  namespace: argo-test
+spec:
+  destination:
+    name: in-cluster
+    namespace: argo-test
+  project: argo-test
+  source:
+    kustomize: {}
+    path: k8s
+    repoURL: 'https://github.com/gmeghnag/argo-test'
+    targetRevision: HEAD
+  syncPolicy:
+    automated:
+      prune: true
+    retry:
+      backoff:
+        duration: 5s
+        factor: 2
+        maxDuration: 3m0s
+      limit: 2
