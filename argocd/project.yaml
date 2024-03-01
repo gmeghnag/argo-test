@@ -10,7 +10,7 @@ spec:
   description: argo-test
   destinations:
     - name: in-cluster
-      namespace: argo-test
+      namespace: openshift-gitops
       server: 'https://kubernetes.default.svc'
   namespaceResourceWhitelist:
     - group: '*'
